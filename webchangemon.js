@@ -10,6 +10,8 @@ function bootstrapHandleError(options) {
         const message = `${error.message}
         ${customMsg}`;
         log(message);
+
+        // Only send an email when error did not occur during email sending in order to create no loop.
         if (!mail)
             this.sendEmail({
                 subject: `${options.mailTitle}: Fehler`,
@@ -47,6 +49,7 @@ function bootstrapSendEmail(options, transporterIn) {
             subject: message.subject,
             html: message.content,
         };
+
         try {
             const info = await transporter.sendMail(mailOptions);
             log(`Message sent to ${info.accepted}: ${info.messageId}`);
@@ -54,7 +57,7 @@ function bootstrapSendEmail(options, transporterIn) {
             handleError(
                 error,
                 `Failed sending email to ${options.toMail}`,
-                true
+                true // Third parameter must be true, because else we would create a loop!
             );
         }
     };
@@ -66,6 +69,7 @@ function bootstrapFormatEmail(options) {
         const content =
             messages.join("<br/><br/>") +
             `<br/><br/>Datenstand: ${this.formatDateHelper(new Date())}`;
+            
         const subject = `${changes.length} ${
             options.mailTitle
         } geändert um ${new Date().toLocaleTimeString("de-DE", {
@@ -100,7 +104,9 @@ function bootstrapRun(options) {
             } else {
                 this.log(`No changes made`);
             }
-            await this.writeToDisk(currentArray);
+            
+            // If application provides a function to reduce file size, use it. If not, write whole current array to disk.
+            await this.writeToDisk(typeof options.reduceData === 'function' ? options.reduceData(currentArray) : currentArray);
         } catch (error) {
             this.handleError(error);
         }
