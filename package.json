@@ -1,8 +1,9 @@
 {
+  "type": "module",
   "name": "webchangemon",
   "version": "1.0.0",
   "description": "Framework to monitor changes to data driven list style web resources",
-  "main": "index.js",
+  "main": "webchangemon.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
