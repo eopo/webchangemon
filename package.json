@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "webchangemon",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Framework to monitor changes to data driven list style web resources",
   "main": "webchangemon.js",
   "scripts": {
