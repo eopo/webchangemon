@@ -78,7 +78,7 @@ function bootstrapFormatEmail(options) {
 
 function bootstrapGetHistoricData(options) {
     return async function () {
-        const file = await fs.readFile(options.dataPath, "utf-8")
+        const file = await fs.readFile(options.dataPath, "utf-8");
         return JSON.parse(file);
     };
 }

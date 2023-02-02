@@ -1,0 +1,4 @@
+node_modules
+example.mjs
+data.json
+.prettierrc
