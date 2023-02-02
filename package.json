@@ -1,0 +1,22 @@
+{
+  "name": "webchangemon",
+  "version": "1.0.0",
+  "description": "Framework to monitor changes to data driven list style web resources",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eopo/webchangemon.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eopo/webchangemon/issues"
+  },
+  "homepage": "https://github.com/eopo/webchangemon#readme",
+  "dependencies": {
+    "nodemailer": "^6.9.1"
+  }
+}
