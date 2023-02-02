@@ -78,8 +78,13 @@ function bootstrapFormatEmail(options) {
 
 function bootstrapGetHistoricData(options) {
     return async function () {
-        const file = await fs.readFile(options.dataPath, "utf-8");
-        return JSON.parse(file);
+        try {
+            const file = await fs.readFile(options.dataPath, "utf-8");
+            return JSON.parse(file);
+        } catch (error) {
+            log('Could not find historic data. File will be created on next run.');
+            return [];
+        }
     };
 }
 
