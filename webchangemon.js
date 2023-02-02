@@ -88,14 +88,14 @@ function bootstrapRun(options) {
         try {
             const currentArray = await options.getCurrentData();
             const previousArray = await this.getHistoricData();
-            changes = options.compareData(currentArray, previousArray);
+            const changes = options.compareData(currentArray, previousArray);
             if (changes.length > 0) {
                 const email = this.formatEmail(changes);
                 this.sendEmail(email);
             } else {
                 this.log(`No changes made`);
             }
-            await writeToDisk(currentArray);
+            await this.writeToDisk(currentArray);
         } catch (error) {
             this.handleError(error);
         }
